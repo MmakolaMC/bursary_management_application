@@ -1,1 +1,1 @@
-# bursary_management_application
+# Bursary Management Application
