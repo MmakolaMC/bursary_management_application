@@ -34,7 +34,9 @@ CREATE TABLE [dbo].[FundedSTUDENTS](
 [FundedStudentID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
 [StudentName] [varchar] (120) NULL,
 [StudentNumber][int] NULL,
-[YearOfStudy] [date] DEFAULT CONVERT(varchar,GETDATE(),23)
+[YearOfStudy] [date] DEFAULT CONVERT(varchar,GETDATE(),23),
+[FundedInstituteID] [int] REFERENCES Movies(FundedInstituteID),
+[StudentApplicationID] [int] REFERENCES Movies(StudentApplicationID) 
 )
 
 GO
@@ -43,21 +45,10 @@ CREATE TABLE [dbo].[HeadOfDepartment](
 [HeadOfDepartmentName] [varchar] (120) NULL,
 [HeadOfDepartmentEmail] [varchar] (120) NULL,
 [HeadOfDepartmentNumber] [int] NULL,
-InstituteID [int] NULL,
-FOREIGN KEY (InstituteID) REFERENCES Institutions(InstituteID)
+[InstituteID] [int] REFERENCES Movies(InstituteID) 
 )
 
 GO
-
-CREATE TABLE [dbo].[Applications](
-[ApplicantID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
-[ApplicantName] [varchar] (120) NULL,
-[Status] [varchar] (120)NULL,
-[AmountAppliedFor] [Money] DEFAULT 0
-)
-
-GO
-
 
 CREATE TABLE [dbo].[BursaryYearlyBudget](
 [BudgetID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
