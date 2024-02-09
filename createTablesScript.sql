@@ -19,13 +19,12 @@ GO
 
 CREATE TABLE [dbo].[StudentApplication](
     [StudentApplicationID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
-    [StudentName] [varchar] NULL,
+    [StudentName] [varchar] (120) NULL,
     [StudentAge][int] NULL,
-    [Race] [varchar] NULL,
+    [Race] [varchar](120) NULL,
     [Documents] [varBinary] (max),
-    [Status] [varchar] NULL,
+    [Status] [varchar] (50) NULL,
     [AmountAppliedFor] [Money] DEFAULT 0.00
-
 )
 GO
 
