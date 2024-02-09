@@ -13,4 +13,3 @@ jobs:
         path: './test_table.sql'
         action: 'publish'
         build-arguments: '-c Release'
-        arguments: '/p:DropObjectsNotInSource=true'
