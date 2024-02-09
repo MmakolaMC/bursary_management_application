@@ -12,4 +12,4 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: winget -v
-      - run: winget install Microsoft.SQLServer.2022.Express --disable-interactivity
+      - run: winget install Microsoft.SQLServer.2022.Express --disable-interactivity -y
