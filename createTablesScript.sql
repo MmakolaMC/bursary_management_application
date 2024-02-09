@@ -2,8 +2,8 @@ USE BursaryManagement
 GO
 CREATE TABLE [dbo].[InstituteApplication](
 [instituteApplicationID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
-[InstituteName] [varchar] (120) NULL,
-[Status] [varchar] NULL,
+[InstituteName] [varchar] (120) ,
+[Status] [varchar](50),
 )
 
 GO
