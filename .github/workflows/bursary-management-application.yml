@@ -12,4 +12,4 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: winget -v
-      - run: winget install Microsoft.SQLServer.2022.Express -h
+      - run: winget install -h Microsoft.SQLServer.2022.Express
