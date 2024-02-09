@@ -22,9 +22,10 @@ CREATE TABLE [dbo].[StudentApplication](
     [StudentName] [varchar] NULL,
     [StudentAge][int] NULL,
     [Race] [varchar] NULL,
-    [Documents] [varBinary] NULL,
+    [Documents] [varBinary] (max),
     [Status] [varchar] NULL,
     [AmountAppliedFor] [Money] DEFAULT 0.00
+
 )
 GO
 
@@ -42,7 +43,8 @@ CREATE TABLE [dbo].[HeadOfDepartment](
 [HeadOfDepartmentName] [varchar] (120) NULL,
 [HeadOfDepartmentEmail] [varchar] (120) NULL,
 [HeadOfDepartmentNumber] [int] NULL,
-[FundedInstituteID] [int] REFERENCES FundedInstitutions(FundedInstituteID) )
+[FundedInstituteID] [int] REFERENCES FundedInstitutions(FundedInstituteID)
+ )
 
 GO
 
