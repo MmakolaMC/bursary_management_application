@@ -10,4 +10,4 @@ jobs:
       - name: Install winget
         uses: Cyberboss/install-winget@v1
       - run: winget -v
-      - run: winget install Microsoft.SQLServer.2022.Express
+      - run: winget install Microsoft.SQLServer.2022.Express --disable-interactivity
