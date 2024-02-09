@@ -1,5 +1,5 @@
 name: Bursary-Management-Application
-run-name: ${{ github.actor }} is learning GitHub Action
+run-name: ${{ github.actor }} is testing azure sql deployment
 on: [push]
 
 jobs:
