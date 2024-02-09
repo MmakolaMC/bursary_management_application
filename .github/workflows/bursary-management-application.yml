@@ -9,5 +9,7 @@ jobs:
       - run: Start-Process powershell -Verb RunAs
       - name: Install winget
         uses: Cyberboss/install-winget@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: winget -v
       - run: winget install Microsoft.SQLServer.2022.Express --disable-interactivity
