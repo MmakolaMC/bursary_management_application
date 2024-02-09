@@ -11,7 +11,6 @@ jobs:
     - uses: azure/sql-action@v2.2.1
       with:        
         connection-string: ${{ secrets.BURSARY_MANAGEMENT_APPLICATION_DB }}
-        path: './Database.sqlproj'
         action: 'publish'
         build-arguments: '-c Release'
         arguments: '/p:DropObjectsNotInSource=true'
