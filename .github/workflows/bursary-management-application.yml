@@ -1,0 +1,11 @@
+name: Bursary-Management-Application
+run-name: ${{ github.actor }} is learning GitHub Actions
+on: [push]
+jobs:
+  check-bats-version:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: Start-Process powershell -Verb RunAs
+      - run: winget -v
+      - run: winget install Microsoft.SQLServer.2022.Express
