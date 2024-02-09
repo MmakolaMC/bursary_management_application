@@ -1,16 +1,43 @@
 USE BursaryManagement 
 GO
-
-CREATE TABLE [dbo].[Institutions](
-[instituteID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
+CREATE TABLE [dbo].[InstituteApplication](
+[instituteApplicationID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
 [InstituteName] [varchar] (120) NULL,
-[AccountNumber] [int] NULL,
-[AmountAllocated] [Money] DEFAULT 0,
-[AccountNumberToStudent] [Money] DEFAULT 0,
+[Status] [varchar] DEFAULT 0.00,
 )
 
 GO
 
+
+
+CREATE TABLE [dbo].[FundedInstitutions](
+[FundedInstituteID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
+[InstituteName] [varchar] (120) NULL,
+[AccountNumber] [int] NULL,
+[Balance] [Money]
+)
+
+
+GO
+CREATE TABLE [dbo].[StudentApplication](
+    [StudentApplicationID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
+    [StudentName] [varchar],
+    [StudentAge][int] NULL,
+    [Race] [varchar],
+    [Documents] [varBinary],
+    [Status],
+    [AmountAppliedFor] [Money] DEFAULT 0.00
+)
+GO
+
+CREATE TABLE [dbo].[FundedSTUDENTS](
+[FundedStudentID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
+[StudentName] [varchar] (120) NULL,
+[StudentNumber][int] NULL,
+[YearOfStudy] [date] DEFAULT CONVERT(varchar,GETDATE(),23)
+)
+
+GO
 CREATE TABLE [dbo].[HeadOfDepartment](
 [HeadOfDepartmentID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
 [HeadOfDepartmentName] [varchar] (120) NULL,
@@ -31,17 +58,6 @@ CREATE TABLE [dbo].[Applications](
 
 GO
 
-CREATE TABLE [dbo].[STUDENTS](
-[StudentID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
-[StudentName] [varchar] (120) NULL,,
-[StudentNumber][int] NULL,,
-[StudentAge][int] NULL,,
-[Race][varchar] NULL,,
-[Documents] [varBinary] NULL,,
-[YearOfStudy] [date] DEFAULT GETDATE(),
-)
-
-GO
 
 CREATE TABLE [dbo].[BursaryYearlyBudget](
 [BudgetID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
