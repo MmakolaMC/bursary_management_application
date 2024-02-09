@@ -1,0 +1,17 @@
+name: learn-github-actions
+run-name: ${{ github.actor }} is learning GitHub Actions
+on: [push]
+jobs:
+  check-bats-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+    - name: Run powershell as Admin
+      run: Start-Process powershell -Verb RunAs
+      
+      - name: Check winget version and Microsoft SQL Server Express 2022
+        run: winget -v
+        run: winget install Microsoft.SQLServer.2022.Express
+    
