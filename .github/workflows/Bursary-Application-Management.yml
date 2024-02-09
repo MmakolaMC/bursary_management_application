@@ -1,8 +1,8 @@
-name: learn-github-actions
+name: Bursary-Application-Management
 run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
 jobs:
-  check-bats-version:
+  setup-runner:
     runs-on: windows-latest
     steps:
       - name: Check out repository
