@@ -1,15 +1,17 @@
 name: Bursary-Management-Application
 run-name: ${{ github.actor }} is learning GitHub Actions
+# .github/workflows/sql-deploy.yml
 on: [push]
+
 jobs:
-  check-bats-version:
-    runs-on: windows-latest
+  build:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - run: Start-Process powershell -Verb RunAs
-      - name: Install winget
-        uses: Cyberboss/install-winget@v1
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: winget -v
-      - run: winget install -h Microsoft.SQLServer.2022.Express
+    - uses: actions/checkout@v3
+    - uses: azure/sql-action@v2.2.1
+      with:        
+        connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+        path: './Database.sqlproj'
+        action: 'publish'
+        build-arguments: '-c Release'
+        arguments: '/p:DropObjectsNotInSource=true'
