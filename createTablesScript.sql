@@ -20,3 +20,12 @@ FOREIGN KEY (InstituteID) REFERENCES Institutions(InstituteID)
 )
 
 GO
+
+CREATE TABLE [dbo].[Applications](
+[ApplicantID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
+[ApplicantName] [varchar] (120),
+[Status] [varchar] (120),
+[AmountAppliedFor] [Money],
+)
+
+GO
