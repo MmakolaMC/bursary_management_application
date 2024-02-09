@@ -7,8 +7,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: Start-Process powershell -Verb RunAs
-      - run: Invoke-WebRequest -Uri https://aka.ms/install-winget -OutFile winget-installer.msi
-      - run: Start-Process msiexec.exe -Wait -ArgumentList '/I winget-installer.msi'
-      - run: Remove-Item -Path winget-installer.msi
+      - run: Add-AppxPackage -RegisterByFamilyName -MainPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe
       - run: winget -v
       - run: winget install Microsoft.SQLServer.2022.Express
