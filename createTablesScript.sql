@@ -1,39 +1,37 @@
 USE BursaryManagement 
 GO
-CREATE TABLE [dbo].[InstituteApplication](
-[instituteApplicationID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
+CREATE TABLE [dbo].[Institution](
+[InstitutionID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
 [InstituteName] [varchar] (120) ,
-[Status] [varchar](50),
 )
 
 GO
 
-CREATE TABLE [dbo].[FundedInstitutions](
-[FundedInstituteID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
-[InstituteName] [varchar] (120) NULL,
-[AccountNumber] [int] NULL,
-[Balance] [Money]
-)
-
-GO
-
-CREATE TABLE [dbo].[StudentApplication](
-    [StudentApplicationID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
+CREATE TABLE [dbo].[Students](
+    [StudentID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
     [StudentName] [varchar] (120) NULL,
     [StudentAge][int] NULL,
     [Race] [varchar](120) NULL,
-    [Documents] [varBinary] (max),
-    [Status] [varchar] (50) NULL,
-    [AmountAppliedFor] [Money] DEFAULT 0.00
+    [YearOfStudy] [date] DEFAULT CONVERT(varchar,GETDATE(),23),   
+    [InstituteID] [int] REFERENCES Institution(InstituteID) 
 )
 GO
 
-CREATE TABLE [dbo].[FundedStudents](
-[FundedStudentID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
-[StudentName] [varchar] (120) NULL,
+
+CREATE TABLE [dbo].[Documents](
+[DocumentID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
+[DocumentTypes] [varchar] (120) NULL,
+[StudentID] [int] REFERENCES Students(StudentID) 
+)
+
+GO
+
+CREATE TABLE [dbo].[Department](
+[DepartmentID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
+[DepartmentName] [varchar] (120) NULL,
 [StudentNumber][int] NULL,
-[YearOfStudy] [date] DEFAULT CONVERT(varchar,GETDATE(),23),
-[StudentApplicationID] [int] REFERENCES StudentApplication(StudentApplicationID) 
+[AveragePassRage] [int] NULL
+[InstituteID] [int] REFERENCES Institution(InstituteID) 
 )
 
 GO
@@ -42,9 +40,16 @@ CREATE TABLE [dbo].[HeadOfDepartment](
 [HeadOfDepartmentName] [varchar] (120) NULL,
 [HeadOfDepartmentEmail] [varchar] (120) NULL,
 [HeadOfDepartmentNumber] [int] NULL,
-[FundedInstituteID] [int] REFERENCES FundedInstitutions(FundedInstituteID)
+[DepartmentID] [int] REFERENCES Department(DepartmentID)
  )
 
+GO
+CREATE TABLE [dbo].[Reviewer](
+    [ReviewerID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    [ReviewerName] [varchar] (120) NULL,
+    [ReviewerNumber] [int] NULL,
+    [ReviewerEmail] [varchar] (120) NULL
+)
 GO
 
 CREATE TABLE [dbo].[BursaryYearlyBudget](
@@ -52,7 +57,25 @@ CREATE TABLE [dbo].[BursaryYearlyBudget](
 [DateAllocated] [date] NULL,
 [AmountAllocated][Money] DEFAULT 0,
 [AmountAllocatedToInstitute] [Money] DEFAULT 0,
-[FundedInstituteID] [int] REFERENCES FundedInstitutions(FundedInstituteID) 
+[ReviewerID] [int] REFERENCES Reviewer(ReviewerID)
+)
+
+GO
+
+CREATE TABLE [dbo].[Application](
+    [ApplicationID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    [ApplicationAmount] [Money] DEFAULT 0.00,
+    [status] [varchar](120) NULL,
+    [DepartmentID] [int] REFERENCES Department(DepartmentID),
+    [StudentID] [int] REFERENCES Student(StudentID)
+)
+GO
+
+CREATE TABLE [dbo].[Funds](
+    [FundID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    [AmountFunded] [Money] DEFAULT 0.00,
+    [DepartmentID] [int] REFERENCES Department(DepartmentID),
+    [BudgetID] [int] REFERENCES BursaryYearlyBudget(BudgetID)
 )
 
 GO
