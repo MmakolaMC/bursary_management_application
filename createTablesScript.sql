@@ -1,5 +1,4 @@
-USE BursaryManagement 
-GO
+
 CREATE TABLE [dbo].[Institution](
 [InstitutionID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
 [InstituteName] [varchar] (120) ,
@@ -69,7 +68,6 @@ CREATE TABLE [dbo].[status](
 
 CREATE TABLE [dbo].[Application](
     [ApplicationID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
-    [ApplicationAmount] [Money] DEFAULT 0.00,
     [status] [varchar](120) NULL,
     [DepartmentID] [int] REFERENCES Department(DepartmentID),
     [StudentID] [int] REFERENCES Students(StudentID),
