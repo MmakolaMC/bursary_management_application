@@ -5,18 +5,18 @@ CREATE TABLE [dbo].[Institution](
 [InstituteName] [varchar] (120) ,
 )
 
-
 CREATE TABLE [dbo].[Race](
-    [RaceID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL
+    [RaceID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
     [RaceName] [varchar] (30)
 )
 
+GO
 CREATE TABLE [dbo].[Students](
     [StudentID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
     [StudentName] [varchar] (120) NULL,
     [StudentAge][int] NULL,
     [YearOfStudy] [date] DEFAULT CONVERT(varchar,GETDATE(),23),   
-    [InstituteID] [int] REFERENCES Institution(InstituteID) 
+    [InstitionID] [int] REFERENCES Institution(InstitutionID),
     [RaceID] [int] REFERENCES Race(RaceID)
 )
 GO
@@ -33,7 +33,7 @@ GO
 CREATE TABLE [dbo].[Department](
 [DepartmentID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
 [DepartmentName] [varchar] (120) NULL,
-[InstituteID] [int] REFERENCES Institution(InstituteID) 
+[InstitutionID] [int] REFERENCES Institution(InstitutionID) 
 )
 
 GO
@@ -63,7 +63,7 @@ CREATE TABLE [dbo].[Budget](
 
 GO
 CREATE TABLE [dbo].[status](
-  [StatusID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL 
+  [StatusID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL, 
   [statusName] [varchar] (120) 
 )
 
@@ -72,7 +72,7 @@ CREATE TABLE [dbo].[Application](
     [ApplicationAmount] [Money] DEFAULT 0.00,
     [status] [varchar](120) NULL,
     [DepartmentID] [int] REFERENCES Department(DepartmentID),
-    [StudentID] [int] REFERENCES Student(StudentID)
+    [StudentID] [int] REFERENCES Students(StudentID),
     [StatusID] [int] REFERENCES Status(StatusID)
 )
 GO
@@ -89,5 +89,7 @@ GO
 CREATE TABLE [dbo].[Programs](
 [ProgramID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
 [ProgramName] [varchar] (255),
-[InstituteID] [int] REFERENCES Institution(InstituteID) 
+[InstitutionID] [int] REFERENCES Institution(InstitutionID) 
 )
+
+GO
