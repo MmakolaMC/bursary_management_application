@@ -5,22 +5,26 @@ CREATE TABLE [dbo].[Institution](
 [InstituteName] [varchar] (120) ,
 )
 
-GO
+
+CREATE TABLE [dbo].[Race](
+    [RaceID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL
+    [RaceName] [varchar] (30)
+)
 
 CREATE TABLE [dbo].[Students](
     [StudentID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
     [StudentName] [varchar] (120) NULL,
     [StudentAge][int] NULL,
-    [Race] [varchar](120) NULL,
     [YearOfStudy] [date] DEFAULT CONVERT(varchar,GETDATE(),23),   
     [InstituteID] [int] REFERENCES Institution(InstituteID) 
+    [RaceID] [int] REFERENCES Race(RaceID)
 )
 GO
 
 
 CREATE TABLE [dbo].[Documents](
 [DocumentID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
-[DocumentType] [varchar] (120) NULL,
+[DocumentType] [varbinary] (120) NULL,
 [StudentID] [int] REFERENCES Students(StudentID) 
 )
 
@@ -46,19 +50,22 @@ CREATE TABLE [dbo].[Reviewer](
     [ReviewerID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
     [ReviewerName] [varchar] (120) NULL,
     [ReviewerNumber] [int] NULL,
-    [ReviewerEmail] [varchar] (120) NULL
+    [ReviewerEmail] [varchar] (255) NULL
 )
 GO
 
-CREATE TABLE [dbo].[BursaryYearlyBudget](
+CREATE TABLE [dbo].[Budget](
 [BudgetID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
-[DateAllocated] [date] NULL,
-[AmountAllocated][Money] DEFAULT 0,
-[AmountAllocatedToInstitute] [Money] DEFAULT 0,
+[DateTime] [date] NULL,
+[BudgetAmount][Money] DEFAULT 0,
 [ReviewerID] [int] REFERENCES Reviewer(ReviewerID)
 )
 
 GO
+CREATE TABLE [dbo].[status](
+  [StatusID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL 
+  [statusName] [varchar] (120) 
+)
 
 CREATE TABLE [dbo].[Application](
     [ApplicationID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
@@ -66,6 +73,7 @@ CREATE TABLE [dbo].[Application](
     [status] [varchar](120) NULL,
     [DepartmentID] [int] REFERENCES Department(DepartmentID),
     [StudentID] [int] REFERENCES Student(StudentID)
+    [StatusID] [int] REFERENCES Status(StatusID)
 )
 GO
 
@@ -73,7 +81,7 @@ CREATE TABLE [dbo].[Funds](
     [FundID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
     [AmountFunded] [Money] DEFAULT 0.00,
     [DepartmentID] [int] REFERENCES Department(DepartmentID),
-    [BudgetID] [int] REFERENCES BursaryYearlyBudget(BudgetID)
+    [BudgetID] [int] REFERENCES Budget(BudgetID)
 )
 
 GO
