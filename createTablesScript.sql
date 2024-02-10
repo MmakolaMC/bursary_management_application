@@ -29,8 +29,6 @@ GO
 CREATE TABLE [dbo].[Department](
 [DepartmentID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
 [DepartmentName] [varchar] (120) NULL,
-[StudentNumber][int] NULL,
-[AveragePassRage] [int] NULL
 [InstituteID] [int] REFERENCES Institution(InstituteID) 
 )
 
