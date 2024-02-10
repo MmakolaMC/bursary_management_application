@@ -20,7 +20,7 @@ GO
 
 CREATE TABLE [dbo].[Documents](
 [DocumentID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
-[DocumentTypes] [varchar] (120) NULL,
+[DocumentType] [varchar] (120) NULL,
 [StudentID] [int] REFERENCES Students(StudentID) 
 )
 
@@ -37,8 +37,8 @@ CREATE TABLE [dbo].[Department](
 GO
 CREATE TABLE [dbo].[HeadOfDepartment](
 [HeadOfDepartmentID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
-[HeadOfDepartmentName] [varchar] (120) NULL,
-[HeadOfDepartmentEmail] [varchar] (120) NULL,
+[HeadOfDepartmentName] [varchar] (100) NULL,
+[HeadOfDepartmentEmail] [varchar] (255) NULL,
 [HeadOfDepartmentNumber] [int] NULL,
 [DepartmentID] [int] REFERENCES Department(DepartmentID)
  )
@@ -79,3 +79,9 @@ CREATE TABLE [dbo].[Funds](
 )
 
 GO
+
+CREATE TABLE [dbo].[Programs](
+[ProgramID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
+[ProgramName] [varchar] (255),
+[InstituteID] [int] REFERENCES Institution(InstituteID) 
+)
