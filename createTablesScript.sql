@@ -1,5 +1,3 @@
-USE Bursary_Management_Application_DB 
-GO
 CREATE TABLE IF NOT EXISTS [dbo].[Institution](
 [InstituteID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
 [InstituteName] [varchar] (120) ,
