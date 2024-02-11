@@ -11,7 +11,7 @@ CREATE TABLE [dbo].[Race](
 )
 
 GO
-CREATE TABLE [dbo].[Students](
+CREATE TABLE [dbo].[Student](
     [StudentID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
     [StudentName] [varchar] (120) NULL,
     [StudentAge][int] NULL,
@@ -22,7 +22,7 @@ CREATE TABLE [dbo].[Students](
 GO
 
 
-CREATE TABLE [dbo].[Documents](
+CREATE TABLE [dbo].[Document](
 [DocumentID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
 [DocumentType] [varbinary] (120) NULL,
 [StudentID] [int] REFERENCES Students(StudentID) 
@@ -86,7 +86,7 @@ CREATE TABLE [dbo].[Funds](
 
 GO
 
-CREATE TABLE [dbo].[Programs](
+CREATE TABLE [dbo].[Program](
 [ProgramID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
 [ProgramName] [varchar] (255),
 [InstituteID] [int] REFERENCES Institution(InstituteID) 
