@@ -1,18 +1,17 @@
-CREATE PROCEDURE UpdateBudgetAmount
+CREATE PROCEDURE [dbo].[InsertDataIntoTable](
+    @TableName nvarchar(max) = '',
+    @ColumnNames nvarchar(max) = '',
+    @Values nvarchar(max) = ''
+)
 AS
-BEGIN 
+BEGIN
+    IF @TableName = '' OR @ColumnNames = '' OR @Values = ''
+    BEGIN
+        PRINT 'Please provide valid parameters.'
+        RETURN
+    END
 
-    UPDATE b
-    SET b.BudgetAmount = b.BudgetAmount - ISNULL(f.TotalAmountFunded, 0)
-    FROM dbo.Budget AS b
-    LEFT JOIN (
-        SELECT BudgetID, SUM(AmountFunded) AS TotalAmountFunded
-        FROM dbo.Funds
-        GROUP BY BudgetID
-    ) AS f ON b.BudgetID = f.BudgetID;
+    DECLARE @SQLQuery nvarchar(max)
+    SET @SQLQuery =  'INSERT INTO ' + QUOTENAME(@TableName) + ' (' + @ColumnNames + ') VALUES (' + @Values + ')'
+    EXEC (@SQLQuery)
 END
-
-
-EXEC UpdateBudgetAmount;
-
-SELECT * FROM dbo.Budget;
