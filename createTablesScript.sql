@@ -1,6 +1,3 @@
-USE Bursary_Management_Application_DB 
-GO
-
 IF OBJECT_ID('model.dbo.Institution') IS NOT NULL
 	BEGIN
 		PRINT 'Database Table Exists'
