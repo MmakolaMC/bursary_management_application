@@ -1,6 +1,3 @@
--- GRANT INSERT ON dbo.Institution TO [team-red];
--- GRANT INSERT ON dbo.Race TO [team-red];
-
 
 
 INSERT INTO Institution (InstituteName)
@@ -19,11 +16,10 @@ VALUES ('John Doe', 25, 1, 1),
        ('Jane Smith', 22, 2, 2),
        ('Michael Johnson', 20, 3, 3);
 
-
 INSERT INTO Documents (DocumentType, StudentID)
-VALUES ('Transcript', 1),
-       ('Application Form', 2),
-       ('ID Card', 3);
+VALUES (CONVERT(varbinary, 'Transcript'), 1),
+       (CONVERT(varbinary, 'Application Form'), 2),
+       (CONVERT(varbinary, 'ID Card'), 3);
 
 INSERT INTO Department (DepartmentName, InstitutionID)
 VALUES ('Computer Science', 1),
