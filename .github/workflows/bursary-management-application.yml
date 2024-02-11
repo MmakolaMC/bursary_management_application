@@ -2,7 +2,10 @@ name: Bursary-Management-Application
 run-name: ${{ github.actor }} is testing azure sql deployment
 on:
   push:
-    - branches: [main, development_stable, workflows_pipeline]
+    - branches:
+      - main
+      - development_stable
+      - workflows_pipeline
 
 jobs:
   build:
