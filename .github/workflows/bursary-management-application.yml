@@ -9,27 +9,36 @@ on:
 
 jobs:
   build:
+    name: Create Database
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: azure/sql-action@v2.2.1
-        - name: Create Database
+        with:        
+          connection-string: ${{ secrets.BURSARY_MANAGEMENT_APPLICATION_DB }}
+          path: './createDatabase.sql'
+          action: 'publish'
+          build-arguments: '-c Release'
+
+        name: Create Tables
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v3
+          - uses: azure/sql-action@v2.2.1
           with:        
             connection-string: ${{ secrets.BURSARY_MANAGEMENT_APPLICATION_DB }}
-            path: './createDatabase.sql'
+            path: './createTablesScript.sql'
             action: 'publish'
             build-arguments: '-c Release'
 
-        - name: Create Tables
+        name: Create Stored Procedure
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v3
+          - uses: azure/sql-action@v2.2.1
             with:        
               connection-string: ${{ secrets.BURSARY_MANAGEMENT_APPLICATION_DB }}
-              path: './createTablesScript.sql'
+              path: './StoredProcedure.sql'
               action: 'publish'
               build-arguments: '-c Release'
-        - name: Create Stored Procedure
-            with:        
-            connection-string: ${{ secrets.BURSARY_MANAGEMENT_APPLICATION_DB }}
-            path: './StoredProcedure.sql'
-            action: 'publish'
-            build-arguments: '-c Release'
 
