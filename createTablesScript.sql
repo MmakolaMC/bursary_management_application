@@ -1,7 +1,7 @@
 USE BursaryManagement 
 GO
 CREATE TABLE [dbo].[Institution](
-[InstitutionID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
+[InstituteID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
 [InstituteName] [varchar] (120) ,
 )
 
@@ -16,7 +16,7 @@ CREATE TABLE [dbo].[Students](
     [StudentName] [varchar] (120) NULL,
     [StudentAge][int] NULL,
     [YearOfStudy] [date] DEFAULT CONVERT(varchar,GETDATE(),23),   
-    [InstitionID] [int] REFERENCES Institution(InstitutionID),
+    [InstituteID] [int] REFERENCES Institution(InstituteID),
     [RaceID] [int] REFERENCES Race(RaceID)
 )
 GO
@@ -33,7 +33,7 @@ GO
 CREATE TABLE [dbo].[Department](
 [DepartmentID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
 [DepartmentName] [varchar] (120) NULL,
-[InstitutionID] [int] REFERENCES Institution(InstitutionID) 
+[InstituteID] [int] REFERENCES Institution(InstituteID) 
 )
 
 GO
@@ -89,7 +89,7 @@ GO
 CREATE TABLE [dbo].[Programs](
 [ProgramID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
 [ProgramName] [varchar] (255),
-[InstitutionID] [int] REFERENCES Institution(InstitutionID) 
+[InstituteID] [int] REFERENCES Institution(InstituteID) 
 )
 
 GO
