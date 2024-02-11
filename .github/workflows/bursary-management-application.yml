@@ -10,6 +10,6 @@ jobs:
     - uses: azure/sql-action@v2.2.1
       with:        
         connection-string: ${{ secrets.BURSARY_MANAGEMENT_APPLICATION_DB }}
-        path: './test_table.sql'
+        path: './createTablesScript.sql'
         action: 'publish'
         build-arguments: '-c Release'
