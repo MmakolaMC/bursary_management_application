@@ -1,15 +1,33 @@
 name: Bursary-Management-Application
 run-name: ${{ github.actor }} is testing azure sql deployment
-on: [push]
+on:
+  push:
+    - branches: [main, development_stable]
+    - paths: '**.sql'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: azure/sql-action@v2.2.1
-      with:        
-        connection-string: ${{ secrets.BURSARY_MANAGEMENT_APPLICATION_DB }}
-        path: './test_table.sql'
-        action: 'publish'
-        build-arguments: '-c Release'
+      - uses: actions/checkout@v3
+      - uses: azure/sql-action@v2.2.1
+        - name: Create Database
+          with:        
+            connection-string: ${{ secrets.BURSARY_MANAGEMENT_APPLICATION_DB }}
+            path: './createDatabase.sql'
+            action: 'publish'
+            build-arguments: '-c Release'
+
+        - name: Create Tables
+            with:        
+              connection-string: ${{ secrets.BURSARY_MANAGEMENT_APPLICATION_DB }}
+              path: './createDatabase.sql'
+              action: 'publish'
+              build-arguments: '-c Release'
+        - name: Create Stored Procedure
+            with:        
+            connection-string: ${{ secrets.BURSARY_MANAGEMENT_APPLICATION_DB }}
+            path: './createDatabase.sql'
+            action: 'publish'
+            build-arguments: '-c Release'
+
