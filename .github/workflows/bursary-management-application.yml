@@ -6,9 +6,6 @@ on:
       - main
       - development_stable
       - workflows_pipeline
-    paths:
-      - "**.sql"
-      - "**.yml"
 
 jobs:
   create-database:
