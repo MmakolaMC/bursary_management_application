@@ -69,7 +69,6 @@ CREATE TABLE IF NOT EXISTS [dbo].[status](
 
 CREATE TABLE IF NOT EXISTS [dbo].[Application](
     [ApplicationID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
-    [ApplicationAmount] [Money] DEFAULT 0.00,
     [status] [varchar](120) NULL,
     [DepartmentID] [int] REFERENCES Department(DepartmentID),
     [StudentID] [int] REFERENCES Students(StudentID),
