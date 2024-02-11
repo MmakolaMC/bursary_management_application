@@ -1,17 +1,17 @@
 USE BursaryManagement 
 GO
-CREATE TABLE [dbo].[Institution](
+CREATE TABLE IF NOT EXISTS [dbo].[Institution](
 [InstituteID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
 [InstituteName] [varchar] (120) ,
 )
 
-CREATE TABLE [dbo].[Race](
+CREATE TABLE IF NOT EXISTS [dbo].[Race](
     [RaceID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
     [RaceName] [varchar] (30)
 )
 
 GO
-CREATE TABLE [dbo].[Student](
+CREATE TABLE IF NOT EXISTS [dbo].[Student](
     [StudentID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
     [StudentName] [varchar] (120) NULL,
     [StudentAge][int] NULL,
@@ -22,7 +22,7 @@ CREATE TABLE [dbo].[Student](
 GO
 
 
-CREATE TABLE [dbo].[Document](
+CREATE TABLE IF NOT EXISTS [dbo].[Document](
 [DocumentID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
 [DocumentType] [varbinary] (120) NULL,
 [StudentID] [int] REFERENCES Students(StudentID) 
@@ -30,14 +30,14 @@ CREATE TABLE [dbo].[Document](
 
 GO
 
-CREATE TABLE [dbo].[Department](
+CREATE TABLE IF NOT EXISTS [dbo].[Department](
 [DepartmentID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
 [DepartmentName] [varchar] (120) NULL,
 [InstituteID] [int] REFERENCES Institution(InstituteID) 
 )
 
 GO
-CREATE TABLE [dbo].[HeadOfDepartment](
+CREATE TABLE IF NOT EXISTS [dbo].[HeadOfDepartment](
 [HeadOfDepartmentID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
 [HeadOfDepartmentName] [varchar] (100) NULL,
 [HeadOfDepartmentEmail] [varchar] (255) NULL,
@@ -46,7 +46,7 @@ CREATE TABLE [dbo].[HeadOfDepartment](
  )
 
 GO
-CREATE TABLE [dbo].[Reviewer](
+CREATE TABLE IF NOT EXISTS[dbo].[Reviewer](
     [ReviewerID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
     [ReviewerName] [varchar] (120) NULL,
     [ReviewerNumber] [int] NULL,
@@ -54,7 +54,7 @@ CREATE TABLE [dbo].[Reviewer](
 )
 GO
 
-CREATE TABLE [dbo].[Budget](
+CREATE TABLE IF NOT EXISTS [dbo].[Budget](
 [BudgetID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
 [DateTime] [date] NULL,
 [BudgetAmount][Money] DEFAULT 0,
@@ -62,12 +62,12 @@ CREATE TABLE [dbo].[Budget](
 )
 
 GO
-CREATE TABLE [dbo].[status](
+CREATE TABLE IF NOT EXISTS [dbo].[status](
   [StatusID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL, 
   [statusName] [varchar] (120) 
 )
 
-CREATE TABLE [dbo].[Application](
+CREATE TABLE IF NOT EXISTS [dbo].[Application](
     [ApplicationID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
     [ApplicationAmount] [Money] DEFAULT 0.00,
     [status] [varchar](120) NULL,
@@ -77,7 +77,7 @@ CREATE TABLE [dbo].[Application](
 )
 GO
 
-CREATE TABLE [dbo].[Funds](
+CREATE TABLE IF NOT EXISTS [dbo].[Funds](
     [FundID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
     [AmountFunded] [Money] DEFAULT 0.00,
     [DepartmentID] [int] REFERENCES Department(DepartmentID),
@@ -86,7 +86,7 @@ CREATE TABLE [dbo].[Funds](
 
 GO
 
-CREATE TABLE [dbo].[Program](
+CREATE TABLE IF NOT EXISTS [dbo].[Program](
 [ProgramID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
 [ProgramName] [varchar] (255),
 [InstituteID] [int] REFERENCES Institution(InstituteID) 
