@@ -8,7 +8,7 @@ on:
       - workflows_pipeline
 
 jobs:
-  build:
+  create-database:
     name: Create Database
     runs-on: ubuntu-latest
     steps:
@@ -19,16 +19,18 @@ jobs:
           path: './createDatabase.sql'
           action: 'publish'
 
+  create-tables:
     name: Create Tables
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: azure/sql-action@v2.2.1
-      with:        
-        connection-string: ${{ secrets.BURSARY_MANAGEMENT_APPLICATION_DB }}
-        path: './createTablesScript.sql'
-        action: 'publish'
+        with:        
+          connection-string: ${{ secrets.BURSARY_MANAGEMENT_APPLICATION_DB }}
+          path: './createTablesScript.sql'
+          action: 'publish'
 
+  create-procedure:
     name: Create Stored Procedure
     runs-on: ubuntu-latest
     steps:
