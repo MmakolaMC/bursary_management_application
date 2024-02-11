@@ -1,0 +1,15 @@
+name: Bursary-Management-Application
+run-name: ${{ github.actor }} is testing azure sql deployment
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: azure/sql-action@v2.2.1
+      with:        
+        connection-string: ${{ secrets.BURSARY_MANAGEMENT_APPLICATION_DB }}
+        path: './test_table.sql'
+        action: 'publish'
+        build-arguments: '-c Release'
