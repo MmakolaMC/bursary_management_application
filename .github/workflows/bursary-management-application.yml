@@ -9,7 +9,6 @@ on:
     paths:
       - "**.sql"
       - "**.yml"
-
 jobs:
   create-database:
     name: Create Database
@@ -43,5 +42,3 @@ jobs:
           connection-string: ${{ secrets.BURSARY_MANAGEMENT_APPLICATION_DB }}
           path: './StoredProcedure.sql'
           action: 'publish'
-
->>>>>>> development_stable
