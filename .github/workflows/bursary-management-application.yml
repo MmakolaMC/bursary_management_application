@@ -3,7 +3,6 @@ run-name: ${{ github.actor }} is testing azure sql deployment
 on:
   push:
     - branches: [main, development_stable, workflows_pipeline]
-    - paths: '**.sql'
 
 jobs:
   build:
