@@ -1,4 +1,4 @@
-IF OBJECT_ID('model.dbo.Institution') IS NOT NULL
+IF OBJECT_ID('master.dbo.Institution') IS NOT NULL
 	BEGIN
 		PRINT 'Database Table Exists'
 	END;
@@ -12,7 +12,7 @@ ELSE
 	END
 
 
-IF OBJECT_ID('model.dbo.Race') IS NOT NULL
+IF OBJECT_ID('master.dbo.Race') IS NOT NULL
 	BEGIN
 		PRINT 'Database Table Exists'
 	END;
@@ -26,7 +26,7 @@ END;
 
 GO
 
-IF OBJECT_ID('model.dbo.Department') IS NOT NULL
+IF OBJECT_ID('master.dbo.Department') IS NOT NULL
 	BEGIN
 		PRINT 'Database Table Exists'
 	END;
@@ -40,7 +40,7 @@ ELSE
 	END;
 GO
 
-IF OBJECT_ID('model.dbo.Program') IS NOT NULL
+IF OBJECT_ID('master.dbo.Program') IS NOT NULL
 	BEGIN
 		PRINT 'Database Table Exists'
 	END;
@@ -54,7 +54,7 @@ ELSE
 END;
 GO
 
-IF OBJECT_ID('model.dbo.Student') IS NOT NULL
+IF OBJECT_ID('master.dbo.Student') IS NOT NULL
 	BEGIN
 		PRINT 'Database Table Exists'
 	END;
@@ -72,7 +72,7 @@ ELSE
 END;
 GO
 
-IF OBJECT_ID('model.dbo.Documents') IS NOT NULL
+IF OBJECT_ID('master.dbo.Documents') IS NOT NULL
 	BEGIN
 		PRINT 'Database Table Exists'
 	END;
@@ -87,7 +87,7 @@ END;
 
 GO
 
-IF OBJECT_ID('model.dbo.HeadOfDepartent') IS NOT NULL
+IF OBJECT_ID('master.dbo.HeadOfDepartent') IS NOT NULL
 	BEGIN
 		PRINT 'Database Table Exists'
 	END;
@@ -103,7 +103,7 @@ ELSE
  END;
 GO
 
-IF OBJECT_ID('model.dbo.Reviewer') IS NOT NULL
+IF OBJECT_ID('master.dbo.Reviewer') IS NOT NULL
 	BEGIN
 		PRINT 'Database Table Exists'
 	END;
@@ -118,7 +118,7 @@ CREATE TABLE[dbo].[Reviewer](
 END;
 GO
 
-IF OBJECT_ID('model.dbo.Budget') IS NOT NULL
+IF OBJECT_ID('master.dbo.Budget') IS NOT NULL
 	BEGIN
 		PRINT 'Database Table Exists'
 	END;
@@ -133,7 +133,7 @@ ELSE
 END;
 GO
 
-IF OBJECT_ID('model.dbo.Status') IS NOT NULL
+IF OBJECT_ID('master.dbo.Status') IS NOT NULL
 	BEGIN
 		PRINT 'Database Table Exists'
 	END;
@@ -146,7 +146,7 @@ ELSE
 END;
 GO
 
-IF OBJECT_ID('model.dbo.Application') IS NOT NULL
+IF OBJECT_ID('master.dbo.Application') IS NOT NULL
 	BEGIN
 		PRINT 'Database Table Exists'
 	END;
@@ -162,7 +162,7 @@ ELSE
 END;
 GO
 
-IF OBJECT_ID('model.dbo.Funds') IS NOT NULL
+IF OBJECT_ID('master.dbo.Funds') IS NOT NULL
 	BEGIN
 		PRINT 'Database Table Exists'
 	END;
