@@ -5,6 +5,9 @@ on:
     branches:
       - main
       - development_stable
+    pull-request:
+      - main
+      - development_stable
     paths:
       - "**.sql"
       - "**.yml"
