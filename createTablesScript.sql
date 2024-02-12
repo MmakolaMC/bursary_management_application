@@ -6,7 +6,8 @@ ELSE
 	BEGIN
 		CREATE TABLE [dbo].[Institution](
 		[InstituteID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
-		[InstituteName] [varchar] (120) ,
+		[InstituteName] [varchar] (120),
+		[Province] [varchar](120)
 )
 	END
 
@@ -19,7 +20,7 @@ ELSE
 	BEGIN
 	  CREATE TABLE [dbo].[Race](
 		[RaceID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
-		[RaceName] [varchar] (30)
+		[Race] [varchar] (30)
 )
 END;
 
@@ -63,6 +64,7 @@ ELSE
 			[StudentID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
 			[StudentName] [varchar] (120) NULL,
 			[StudentAge][int] NULL,
+			[StudentAverage][int] NULL,
 			[YearOfStudy] [date] DEFAULT CONVERT(varchar,GETDATE(),23),   
 			[ProgramID] [int] REFERENCES Program(ProgramID),
 			[RaceID] [int] REFERENCES Race(RaceID)
@@ -139,7 +141,7 @@ ELSE
 	BEGIN
 		CREATE TABLE [dbo].[Status](
 			  [StatusID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL, 
-			  [statusName] [varchar] (120) 
+			  [Status] [varchar] (120) 
 	)
 END;
 GO
@@ -152,7 +154,6 @@ ELSE
 	BEGIN
 		CREATE TABLE[dbo].[Application](
 			[ApplicationID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
-			[status] [varchar](120) NULL,
 			[DepartmentID] [int] REFERENCES Department(DepartmentID),
 			[StudentID] [int] REFERENCES Student(StudentID),
 			[StatusID] [int] REFERENCES Status(StatusID)
