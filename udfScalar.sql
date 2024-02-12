@@ -12,3 +12,4 @@ BEGIN
 
     RETURN @difference;
 END;
+GO;

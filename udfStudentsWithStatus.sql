@@ -2,9 +2,9 @@ CREATE FUNCTION [dbo].udfStudentsWithStatus(@StatusID int)
 RETURNS TABLE
 AS
 RETURN
-    SELECT s.StudentName, a.ApplicationID, a.StatusID
-    FROM Student s
-    INNER JOIN Application a ON s.StudentID = a.StudentID
-    WHERE a.StatusID = @StatusID;
- 
-SELECT * FROM udfStudentsWithStatus(1)
+    SELECT student.StudentName, application.ApplicationID, application.StatusID
+    FROM Student student
+    INNER JOIN Application application ON student.StudentID = application.StudentID
+    WHERE application.StatusID = @StatusID;
+
+SELECT * FROM udfStudentsWithStatus(1);

@@ -80,7 +80,8 @@ ELSE
 	BEGIN
 		CREATE TABLE[dbo].[Documents](
 			[DocumentID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
-			[DocumentType] [varbinary] (120) NOT NULL,
+			[Document] [blob] NOT NULL,
+			[DocumentType] [varchar] (64) NOT NULL,
 			[StudentID] [int] REFERENCES Student(StudentID) 
 			)
 END;
