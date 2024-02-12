@@ -5,8 +5,9 @@ IF OBJECT_ID('model.dbo.Institution') IS NOT NULL
 ELSE
 	BEGIN
 		CREATE TABLE [dbo].[Institution](
-		[InstituteID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
+		[InstitutionID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
 		[InstituteName] [varchar] (120) ,
+		[Province] [varchar] (120)
 )
 	END
 
@@ -19,7 +20,7 @@ ELSE
 	BEGIN
 	  CREATE TABLE [dbo].[Race](
 		[RaceID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
-		[RaceName] [varchar] (30)
+		[Race] [varchar] (10)
 )
 END;
 
@@ -34,7 +35,7 @@ ELSE
 		CREATE TABLE [dbo].[Department](
 			[DepartmentID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
 			[DepartmentName] [varchar] (120) NULL,
-			[InstituteID] [int] REFERENCES Institution(InstituteID) 
+			[InstitutionID] [int] REFERENCES Institution(InstitutionID) 
 	)
 	END;
 GO
@@ -78,14 +79,15 @@ ELSE
 	BEGIN
 		CREATE TABLE[dbo].[Documents](
 			[DocumentID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
-			[DocumentType] [varbinary] (120) NULL,
+			[Document] [varbinary] (120) NULL,
 			[StudentID] [int] REFERENCES Student(StudentID) 
 			)
 END;
 
 GO
 
-IF OBJECT_ID('model.dbo.HeadOfDepartent') IS NOT NULL
+
+IF OBJECT_ID('model.dbo.HeadOfDepartment') IS NOT NULL
 	BEGIN
 		PRINT 'Database Table Exists'
 	END;
@@ -139,7 +141,7 @@ ELSE
 	BEGIN
 		CREATE TABLE [dbo].[Status](
 			  [StatusID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL, 
-			  [statusName] [varchar] (120) 
+			  [status] [varchar] (120) 
 	)
 END;
 GO
