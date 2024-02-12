@@ -1,37 +1,31 @@
-CREATE PROCEDURE UpdateBudgetAmount
+CREATE PROCEDURE DistributeFundsz
 AS
-BEGIN 
-
-    UPDATE b
-    SET b.BudgetAmount = b.BudgetAmount - ISNULL(f.TotalAmountFunded, 0)
-    FROM dbo.Budget AS b
-    LEFT JOIN (
-        SELECT BudgetID, SUM(AmountFunded) AS TotalAmountFunded
-        FROM dbo.Funds
-        GROUP BY BudgetID
-    ) AS f ON b.BudgetID = f.BudgetID;
+BEGIN
+    DECLARE @TotalAmount INT
+    DECLARE @AmountFunded INT
+ 
+ 
+    SELECT @TotalAmount = BudgetAmount FROM Budget
+ 
+   
+    SELECT @AmountFunded = AmountFunded FROM Funds
+ 
+   
+    IF @TotalAmount >= @AmountFunded
+    BEGIN
+       
+        UPDATE Budget
+        SET BudgetAmount = BudgetAmount - @AmountFunded
+    END
+    ELSE
+    BEGIN
+       
+        RAISERROR('Insufficient funds', 16, 1);
+        RETURN;
+    END
 END
-
-
-EXEC UpdateBudgetAmount;
-
-SELECT * FROM dbo.Budget;
-
-CREATE PROCEDURE UpdateBudgetAmount
-AS
-BEGIN 
-
-    UPDATE b
-    SET b.BudgetAmount = b.BudgetAmount - ISNULL(f.TotalAmountFunded, 0)
-    FROM dbo.Budget AS b
-    LEFT JOIN (
-        SELECT BudgetID, SUM(AmountFunded) AS TotalAmountFunded
-        FROM dbo.Funds
-        GROUP BY BudgetID
-    ) AS f ON b.BudgetID = f.BudgetID;
-END
-
-
-EXEC UpdateBudgetAmount;
-
-SELECT * FROM dbo.Budget;
+ 
+ 
+EXEC DistributeFundsz;
+ 
+SELECT BudgetAmount FROM dbo.Budget ;
