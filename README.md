@@ -12,3 +12,7 @@
   - `createTablesScript.sql` - This will create the different tables representing the different entities of which data will be stored in the database
 
 Voila! You have yourself a database set up on your local machine or virtual machine(should you choose so)! Enjoy🚀
+
+## An Entity-relationship diagram(ERD) 
+- This diagram maps the relationship and high level overview of the database design
+<img src="./ERD.png"/>
