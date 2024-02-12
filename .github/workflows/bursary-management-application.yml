@@ -5,13 +5,16 @@ on:
     branches:
       - main
       - development_stable
+    paths:
+    - "**.sql"
+    - "**.yml"
   pull-request:
     branches:
       - main
       - development_stable
-  paths:
-    - "**.sql"
-    - "**.yml"
+    paths:
+      - "**.sql"
+      - "**.yml"
 jobs:
   create-database:
     name: Create Database
