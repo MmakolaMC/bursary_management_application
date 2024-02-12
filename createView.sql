@@ -1,15 +1,17 @@
 CREATE VIEW [dbo].[StudentDetailView]
 AS
 SELECT 
-    s.StudentID,
-    s.StudentName,
-    s.StudentAge,
-    s.YearOfStudy,
-    p.ProgramName,
-    d.DepartmentName
+    student.StudentName,
+    student.StudentID,
+    student.StudentAge,
+    student.YearOfStudy,
+    program.ProgramName,
+    department.DepartmentName
 FROM 
-    dbo.Student s
+    dbo.Student student
 JOIN 
-    dbo.Program p ON s.ProgramID = p.ProgramID
+    dbo.Program program ON student.ProgramID = program.ProgramID
 JOIN 
-    dbo.Department d ON p.DepartmentID = d.DepartmentID;
+    dbo.Department department ON program.DepartmentID = department.DepartmentID;
+
+SELECT * FROM [dbo].[StudentDetailView];

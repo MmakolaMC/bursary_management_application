@@ -62,12 +62,12 @@ ELSE
 	BEGIN
 		CREATE TABLE [dbo].[Student](
 			[StudentID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
-			[StudentName] [varchar] (120) NULL,
-			[StudentAge][int] NULL,
-			[StudentAverage][int] NULL,
-			[YearOfStudy] [date] DEFAULT CONVERT(varchar,GETDATE(),23),   
-			[ProgramID] [int] REFERENCES Program(ProgramID),
-			[RaceID] [int] REFERENCES Race(RaceID)
+			[StudentName] [varchar] (120) NOT NULL,
+			[StudentAge][int] NOT NULL,
+			[StudentAverage][int] NOT NULL,
+			[YearOfStudy] [date] DEFAULT CONVERT(varchar,GETDATE(),23) NOT NULL,   
+			[ProgramID] [int] REFERENCES Program(ProgramID) NOT NULL,
+			[RaceID] [int] REFERENCES Race(RaceID) NOT NULL
 		)
 END;
 GO
@@ -80,7 +80,7 @@ ELSE
 	BEGIN
 		CREATE TABLE[dbo].[Documents](
 			[DocumentID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
-			[DocumentType] [varbinary] (120) NULL,
+			[DocumentType] [varbinary] (120) NOT NULL,
 			[StudentID] [int] REFERENCES Student(StudentID) 
 			)
 END;
@@ -95,9 +95,9 @@ ELSE
 	BEGIN
 		CREATE TABLE [dbo].[HeadOfDepartment](
 			[HeadOfDepartmentID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
-			[HeadOfDepartmentName] [varchar] (100) NULL,
-			[HeadOfDepartmentEmail] [varchar] (255) NULL,
-			[HeadOfDepartmentNumber] [int] NULL,
+			[HeadOfDepartmentName] [varchar] (100) NOT NULL,
+			[HeadOfDepartmentEmail] [varchar] (255) NOT NULL,
+			[HeadOfDepartmentNumber] [int] NOT NULL,
 			[DepartmentID] [int] REFERENCES Department(DepartmentID)
  )
  END;
@@ -111,9 +111,9 @@ ELSE
 	BEGIN
 CREATE TABLE[dbo].[Reviewer](
     [ReviewerID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
-    [ReviewerName] [varchar] (120) NULL,
-    [ReviewerNumber] [int] NULL,
-    [ReviewerEmail] [varchar] (255) NULL
+    [ReviewerName] [varchar] (120) NOT NULL,
+    [ReviewerNumber] [int] NOT NULL,
+    [ReviewerEmail] [varchar] (255) NOT NULL
 )
 END;
 GO
@@ -126,9 +126,9 @@ ELSE
 	BEGIN
 		CREATE TABLE[dbo].[Budget](
 		[BudgetID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
-		[DateTime] [date] NULL,
-		[BudgetAmount][Money] DEFAULT 0,
-		[ReviewerID] [int] REFERENCES Reviewer(ReviewerID)
+		[DateTime] [date] NOT NULL,
+		[BudgetAmount][Money] DEFAULT 0.00 NOT NULL,
+		[ReviewerID] [int] REFERENCES Reviewer(ReviewerID) NOT NULL
 		)
 END;
 GO
@@ -141,7 +141,7 @@ ELSE
 	BEGIN
 		CREATE TABLE [dbo].[Status](
 			  [StatusID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL, 
-			  [Status] [varchar] (120) 
+			  [Status] [varchar] (20) NOT NULL 
 	)
 END;
 GO
@@ -154,10 +154,10 @@ ELSE
 	BEGIN
 		CREATE TABLE[dbo].[Application](
 			[ApplicationID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
-			[DepartmentID] [int] REFERENCES Department(DepartmentID),
-			[Application_amount] [money] DEFAULT 0.00,
-			[StudentID] [int] REFERENCES Student(StudentID),
-			[StatusID] [int] REFERENCES Status(StatusID)
+			[DepartmentID] [int] REFERENCES Department(DepartmentID) NOT NULL,
+			[Application_amount] [money] DEFAULT 0.00 NOT NULL,
+			[StudentID] [int] REFERENCES Student(StudentID) NOT NULL,
+			[StatusID] [int] REFERENCES Status(StatusID) NOT NULL
 )
 END;
 GO
