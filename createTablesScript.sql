@@ -155,6 +155,7 @@ ELSE
 		CREATE TABLE[dbo].[Application](
 			[ApplicationID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
 			[DepartmentID] [int] REFERENCES Department(DepartmentID),
+			[Application_amount] [money] DEFAULT 0.00,
 			[StudentID] [int] REFERENCES Student(StudentID),
 			[StatusID] [int] REFERENCES Status(StatusID)
 )
