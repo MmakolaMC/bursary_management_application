@@ -87,7 +87,7 @@ END;
 
 GO
 
-IF OBJECT_ID('Bursary_Management_Application_DB.dbo.HeadOfDepartent') IS NOT NULL
+IF OBJECT_ID('Bursary_Management_Application_DB.dbo.HeadOfDepartment') IS NOT NULL
 	BEGIN
 		PRINT 'Database Table Exists'
 	END;
