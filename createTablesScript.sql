@@ -97,7 +97,7 @@ ELSE
 			[HeadOfDepartmentID] [int] IDENTITY(1,1) PRIMARY KEY  NOT NULL,
 			[HeadOfDepartmentName] [varchar] (100) NOT NULL,
 			[HeadOfDepartmentEmail] [varchar] (255) NOT NULL,
-			[HeadOfDepartmentNumber] [int] NOT NULL,
+			[HeadOfDepartmentNumber] [varchar](10) NOT NULL,
 			[DepartmentID] [int] REFERENCES Department(DepartmentID)
  )
  END;
@@ -112,7 +112,7 @@ ELSE
 CREATE TABLE[dbo].[Reviewer](
     [ReviewerID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
     [ReviewerName] [varchar] (120) NOT NULL,
-    [ReviewerNumber] [int] NOT NULL,
+    [ReviewerNumber] [varchar](10) NOT NULL,
     [ReviewerEmail] [varchar] (255) NOT NULL
 )
 END;
